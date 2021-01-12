@@ -1,0 +1,20 @@
+
+<div class="container">
+   <div class="row bg-light mt-3">
+     <div class="col-4">
+       Name<input type="text" class="form-control mr-2" [(ngModel)]="name">
+     </div>
+     <div class="col-2">
+      Amount<input type="text" class="form-control" [(ngModel)]="amount">
+     </div>
+   </div>
+   <button class=" btn btn-success mr-1 my-2" (click)="add()">Add</button>
+         <button class="btn btn-primary ml-1 my-2" (click)="clear()">Clear</button>
+     <div class="row">
+    <div class="col-10">
+      <div class="row border" *ngFor="let it of total">
+        <div class="col form-control">{{it.ingName}} ({{it.qty}})</div>
+       </div>
+    </div>
+  </div>
+</div>

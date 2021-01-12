@@ -1,0 +1,22 @@
+<div class="row ml-2" *ngIf="!id">
+  <div class="col" ><h4>Please select a recipe!</h4></div>
+</div>
+<div class="row mx-4 mt-3" *ngIf="id">
+  <div class="col">
+    <img src="{{item.img}}" style="width: 400px;height: 300px;">
+     <h3 class="my-1"> {{item.title}}</h3>
+    
+      <div class=" dropdown ">
+        <div class="cell dropdown-toggle  bg-primary"> Manage Recipe
+        </div>
+        <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdownMenuLink" >
+          <a class="dropdown-item" (click)="showPage(i)" *ngFor="let g of manage;index as i">{{g}}</a>
+          </div>
+      </div>
+ 
+    <br>
+    {{item.desc}}
+     <div *ngFor="let item of item.ingredients" class="border form-control">
+      {{item.ingName}} - {{item.qty}}
+     </div>
+  </div>

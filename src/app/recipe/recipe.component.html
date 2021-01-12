@@ -1,0 +1,24 @@
+ 
+
+ <div class="container">
+  <div class="row mt-4">
+    <div class="col-5" >
+      <a routerLink="new" class="btn btn-success mb-2">New Recipe</a>
+      <hr>
+      <div class="row border"  *ngFor="let d of details;index as i">
+        <div class="col-6 my-2 " (click)="selectItem(i)">
+         <h5>{{d.title}}</h5>
+         {{d.desc}}
+         </div>
+        <div class="col-6 text-right my-1" (click)="selectItem(i)">
+              <img src="{{d.img}}" style="height:80px;width:70px">
+        </div>
+      </div>
+    </div>
+    <div class="col-7" >
+      <div class="row ml-2">
+        <div class="col" > <router-outlet></router-outlet></div>
+      </div>
+      </div>
+     </div>
+</div>

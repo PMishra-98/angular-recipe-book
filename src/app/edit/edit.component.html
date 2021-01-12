@@ -1,0 +1,77 @@
+<div class="container">
+   <div class="row mt-3 ml-2">
+    <div class="col-6">
+       <form [formGroup]="form">
+          <div class="row mt-4">
+            <div class="col">
+              <button class="btn btn-success" type="submit" (click)="onSubmit('save')" [disabled]="!form.valid">
+                Save
+               </button>
+               <button class="btn btn-danger ml-2" type="submit" (click)="onSubmit('cancel')">
+               Cancel
+               </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Name
+              <input type="text" class="form-control " formControlName="name" >
+              <small class="text-danger"
+                 *ngIf="!form.get('name').valid&&form.get('name').touched&&!form.get('name').maximum">
+                  this field is required and maximum charcter is 100
+           </small>
+           </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
+              Image URL
+            <input type="text" class="form-control" formControlName="imgurl" >
+            <small class="text-danger"
+           *ngIf="!form.get('imgurl').valid&&form.get('imgurl').touched&&!form.get('imgurl').pattern">
+            image URL is required and write a valid url
+           </small>
+            
+          </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
+             Description
+            <textarea type="text" class="form-control " rows="5" formControlName="desc" ></textarea>
+           <small class="text-danger"
+           *ngIf="form.get('desc').touched&&!form.get('desc').valid">
+           Description is required
+           </small>
+            
+           </div>
+          </div>
+         
+         <div formArrayName="items" *ngFor="let item of form.get('items')['controls']; let i=index">
+              <div [formGroupName]="i" class="row my-2">
+                <div class="col-7" >
+                  <input formControlName="ingName" class="form-control"  >
+                  <span class="text-danger" *ngIf="item.controls.ingName.errors?.unique">not a unique</span>
+                </div>
+                <div class="col-3">
+                  <input formControlName="qty" class="form-control"  >
+                  <span class="text-danger" *ngIf="item.controls.qty.errors?.min">not a positive number</span>
+                </div>
+                <div class="col-1 text-right">
+                  <button *ngIf="i >= 0" (click)="deleteRow(i)" class="btn btn-danger"><i class="fa fa-close"></i></button>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row mt-2">
+              <div class="col">
+               <button class="btn btn-success text-white" (click)="addItem()">
+                 Add Ingredients
+              </button>
+              </div>
+            </div>
+           </form>
+      </div>
+   </div>
+</div>
+
+
+
